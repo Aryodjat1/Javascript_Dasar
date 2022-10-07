@@ -1,4 +1,8 @@
-
+/*
+Membuat executorFunction yang merupakan cara untuk menggunakan Promise
+resolve dan reject merupakan fungsi bawaan dari JavaScript
+pada fungsi tersebut resolve, reject merupakan parameter dari fungsi executorFunction
+*/
 const executorFunction = (resolve, reject) => {
     const isCoffeeMakerReady = true;
     if (isCoffeeMakerReady) {
@@ -8,11 +12,13 @@ const executorFunction = (resolve, reject) => {
     }
 }
  
- 
+ //Membuat fungsi yang menghasilkan keluaran fungsi executorFunction
 const makeCoffee = () => {
     return new Promise(executorFunction);
 }
+//membuat fungsi makeCoffe agar dapat berjalan secara asynchronus
 const coffeePromise = makeCoffee();
+//print out ke console
 console.log(coffeePromise);
  
  
