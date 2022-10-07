@@ -58,15 +58,14 @@ const fetchingUserFromInternet = (isOffline) => {
   
   
   // TODO: 2
-  async function gettingUserName(isOffline) {
+async function gettingUserName(isOffline) {
     try{
         const user = await fetchingUserFromInternet(isOffline);
         return user.name;
     }catch(error){
         return error.message;
     }
-
-  };
+};
   
   
   
