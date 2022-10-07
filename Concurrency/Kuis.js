@@ -35,25 +35,49 @@
   }
   
   // TODO: 1
-  const fetchingUserFromInternet = (callback, isOffline) => {
-    setTimeout(() => {
-      if (isOffline) {
-        callback(new NetworkError('Gagal mendapatkan data dari internet'), null);
-      }
-      callback(null, { name: 'John', age: 18 });
-    }, 500);
-  };
+const fetchingUserFromInternet = (isOffline) => {
+    return new Promise((resolve,reject)=> {
+        setTimeout(()=>{
+            if(isOffline){
+                reject(new NetworkError('Gagal mendapatkan data dari internet'));
+            }
+                resolve({name:'John',age:18});
+            },500);
+        }
+    )
+};
+
+//   const fetchingUserFromInternet = (callback, isOffline) => {
+//     setTimeout(() => {
+//       if (isOffline) {
+//         callback(new NetworkError('Gagal mendapatkan data dari internet'), null);
+//       }
+//       callback(null, { name: 'John', age: 18 });
+//     }, 500);
+//   };
   
   
   // TODO: 2
-  const gettingUserName = () => {
-    fetchingUserFromInternet((error, user) => {
-      if (error) {
+  async function gettingUserName(isOffline) {
+    try{
+        const user = await fetchingUserFromInternet(isOffline);
+        return user.name;
+    }catch(error){
         return error.message;
-      }
-      return user.name;
-    }, false);
+    }
+
   };
+  
+  
+  
+//   const gettingUserName = () => {
+//     fetchingUserFromInternet((error, user) => {
+//       if (error) {
+//         return error.message;
+//       }
+//       return user.name;
+//     }, false);
+//   };
   
   /**
    * Abaikan kode di bawah ini
